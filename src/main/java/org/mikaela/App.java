@@ -12,8 +12,13 @@ public class App {
 
         boolean login = false;
 
-        while (login) {
+        while (!login) {
             login = validation(username, password);
+            if (login) {
+                System.out.println("Welcome");
+            } else {
+                System.out.println("Invalid, try again.");
+            }
         }
     }
 
