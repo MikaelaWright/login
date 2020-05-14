@@ -6,33 +6,37 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        String username = "omar";
-        String password = "snoopy12";
-
 
         boolean login = false;
 
         while (!login) {
-            login = validation(username, password);
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter username: ");
+            String user = scanner.next();
+            System.out.println("Enter password: ");
+            String userPass = scanner.next();
+
+            login = validation(user, userPass);
             if (login) {
-                System.out.println("Welcome");
+                System.out.println("Welcome " + user + "!");
             } else {
                 System.out.println("Invalid, try again.");
             }
         }
     }
 
-    private static boolean validation(String username, String password) {
+    private static boolean validation(String user, String userPass) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter username: ");
-        String userInput = scanner.next();
-        System.out.println("Enter password: ");
-        String userPass = scanner.next();
+        String usernameA = "omar";
+        String passwordA = "iloveyou";
 
-        if ((userInput.equals(username)) && (userPass.equals(password))) {
+        String usernameB = "mika";
+        String passwordB = "snoopy12";
+
+        if ((user.equals(usernameA)) && (userPass.equals(passwordA)) ||
+                (user.equals(usernameB)) && (userPass.equals(passwordB))) {
             return true;
-
         } else {
             return false;
         }
