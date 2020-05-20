@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         boolean login = false;
 
@@ -13,6 +12,7 @@ public class App {
 
             System.out.println("Enter username: ");
             String user = scanner.next();
+
             System.out.println("Enter password: ");
             String userPass = scanner.next();
 
@@ -26,4 +26,5 @@ public class App {
         }
     }
 }
+
 

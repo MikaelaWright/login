@@ -1,19 +1,20 @@
 package org.mikaela;
 
 public class Validation {
-    static boolean validation(String user, String userPass) {
+    static boolean validation(String user, String passHash) {
 
         String usernameA = "omar";
-        String passwordA = "iloveyou";
-
+        int passwordAHash = -1332418844; //iloveyou
         String usernameB = "mika";
-        String passwordB = "snoopy12";
+        int passwordBHash = 684683749; //snoopy12
 
-        if ((user.equals(usernameA)) && (userPass.equals(passwordA)) ||
-                (user.equals(usernameB)) && (userPass.equals(passwordB))) {
-            return true;
-        } else {
-            return false;
+        if (user != null) {
+            if ((user.equals(usernameA)) && (passHash.hashCode() == (passwordAHash)) ||
+                    (user.equals(usernameB)) && (passHash.hashCode() == (passwordBHash))) {
+                return true;
+            }
         }
+        return false;
+
     }
 }
