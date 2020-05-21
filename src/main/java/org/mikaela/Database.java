@@ -60,9 +60,13 @@ public class Database {
                 return password;
             }
 
+            preparedStatement.close();
+            userConnection.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return 0;
     }
 
