@@ -1,7 +1,8 @@
 package org.mikaela;
 
-public class UserService {
+import java.util.ArrayList;
 
+public class UserService {
 
     static boolean lookup(String user, String plainPassword) {
 
@@ -11,34 +12,19 @@ public class UserService {
             return false;
         }
         if (plainPassword.hashCode() == hashedPassword) {
-
             System.out.println("all good!");
             return true;
         }
-//        if (user != null) {
-//
-//
-//            return true;
-//        }
+        if (plainPassword.hashCode() != hashedPassword) {
+            System.out.println("invalid password");
+            return false;
+        }
         return false;
-
-//        String usernameA = "omar";
-//        int passwordAHash = -1332418844; //iloveyou
-//        String usernameB = "mika";
-//        int passwordBHash = 684683749; //snoopy12
-//
-//        if (user != null) {
-//            if ((user.equals(usernameA)) && (passHash.hashCode() == (passwordAHash)) ||
-//                    (user.equals(usernameB)) && (passHash.hashCode() == (passwordBHash))) {
-//                return true;
-//            }
-//        }
-//        return false;
 
     }
 
-    public static void register(String username, String password) {
+    static ArrayList<String> register(String username, String password) {
         int passHash = password.hashCode();
-        Database.insertData(username, passHash);
+        return Database.insertData(username, passHash);
     }
 }

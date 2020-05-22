@@ -1,9 +1,28 @@
 package org.mikaela;
 
-import junit.framework.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class UserServiceTest {
+
+    @Test
+    public void register_existingUser_ErrorsNotEmpty() {
+        //Arrange
+        String userName = "mika";
+        String password = "snoopy12";
+        UserService.register(userName, password);
+
+        //Act
+        ArrayList<String> errors = UserService.register(userName, password);
+
+        //Assert
+        assertTrue(errors.size() != 0);
+        System.out.println(errors.get(0));
+    }
 
     @Test
     public void validation_userNameAndPasswordMatch_Success() {
@@ -16,36 +35,37 @@ public class UserServiceTest {
         boolean entered = UserService.lookup(userName, password);
 
         //Assert
-        Assert.assertTrue(entered);
+
+        assertTrue(entered);
         // delete contents
     }
 
     @Test
     public void validation_userNameMatchesPasswordNot_Fail() {
-        Assert.assertFalse(UserService.lookup("mika", "wrong"));
+        assertFalse(UserService.lookup("mika", "wrong"));
     }
 
     @Test
     public void validation_userNameDoesNotMatchesPasswordDoes_Fail() {
         boolean entered = UserService.lookup("mika123", "snoopy12");
-        Assert.assertFalse(entered);
+        assertFalse(entered);
     }
 
     @Test
     public void validation_emptyPassword_Fail() {
         boolean entered = UserService.lookup("mika123", null);
-        Assert.assertFalse(entered);
+        assertFalse(entered);
     }
 
     @Test
     public void validation_nullUserName_Fail() {
         boolean entered = UserService.lookup(null, "snoopy12");
-        Assert.assertFalse(entered);
+        assertFalse(entered);
     }
 
     @Test
     public void validation_emptyUserName_Fail() {
         boolean entered = UserService.lookup("", "snoopy12");
-        Assert.assertFalse(entered);
+        assertFalse(entered);
     }
 }

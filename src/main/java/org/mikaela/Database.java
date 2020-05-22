@@ -1,6 +1,7 @@
 package org.mikaela;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -16,7 +17,7 @@ public class Database {
         try {
             userConnection = DriverManager.getConnection(url, user, password);
             if (userConnection != null) {
-                System.out.println("Connection Successful.");
+//                System.out.println("Connection Successful.");
             } else {
                 System.out.println("Failed to make connection.");
             }
@@ -26,7 +27,18 @@ public class Database {
         }
     }
 
-    static void insertData(String username, int password) {
+    static ArrayList<String> insertData(String username, int password) {
+
+        ArrayList<String> errors = new ArrayList<>();
+        if (retrieveUser(username) == 0) {
+            createUser(username, password);
+        } else {
+            errors.add("user exists!");
+        }
+        return errors;
+    }
+
+    private static void createUser(String username, int password) {
         Database.makeConnection();
         try {
             String insertQueryStatement = "INSERT  INTO  user_pass (`username`, `password`)  VALUES  (?,?)";
@@ -37,9 +49,9 @@ public class Database {
 
             // execute insert SQL statement
             preparedStatement.executeUpdate();
-            System.out.println(username + " added successfully.");
         } catch (SQLException e) {
-            e.printStackTrace();
+//            errors.add(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -55,8 +67,7 @@ public class Database {
 
             // iterate through results
             while (resultSet.next()) {
-                int password = resultSet.getInt("password");
-                System.out.format("%s, %s\n", username, password);
+                int password = resultSet.getInt("password");]
                 return password;
             }
 
