@@ -1,6 +1,5 @@
 package org.mikaela;
 
-
 import java.util.Scanner;
 
 public class App {
@@ -10,22 +9,11 @@ public class App {
         boolean login = false;
 
         while (!login) {
-            Database.makeConnection();
 
             System.out.println("New user?: y/n");
             String newUser = scanner.next();
 
-//            preparedStatement.close();
-//            userConnection.close(); // connection close
-
-            if (newUser.equals("y")) {
-                System.out.println("Enter new username: ");
-                String username = scanner.next();
-                System.out.println("Enter new password: ");
-                String password = scanner.next();
-                UserService.register(username, password);
-
-            } else {
+            if (newUser.equals("n")) {
                 System.out.println("Enter username: ");
                 String user = scanner.next();
 
@@ -39,6 +27,17 @@ public class App {
                     System.out.println("Invalid, try again.");
                     login = false;
                 }
+            } else {
+                System.out.println("Enter new username: ");
+                String username = scanner.next();
+                System.out.println("Enter new password: ");
+                String password = scanner.next();
+//                while (password == null || password.equals("")) {
+//                    System.out.println("No password entered, try again: ");
+//                    password = scanner.next();
+//                }
+                UserService.register(username, password);
+                System.out.println("Successfully registered.");
             }
 
         }

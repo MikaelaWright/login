@@ -37,23 +37,35 @@ public class UserServiceTest {
         //Assert
 
         assertTrue(entered);
-        // delete contents
+    }
+
+    @Test
+    public void retrieveAllUsers() {
+        //Arrange
+
+        //Act
+
+        //Assert
+
     }
 
     @Test
     public void validation_userNameMatchesPasswordNot_Fail() {
+        //correct password: snoopy12
         assertFalse(UserService.lookup("mika", "wrong"));
     }
 
     @Test
     public void validation_userNameDoesNotMatchesPasswordDoes_Fail() {
+        //correct username: mika
+
         boolean entered = UserService.lookup("mika123", "snoopy12");
         assertFalse(entered);
     }
 
     @Test
     public void validation_emptyPassword_Fail() {
-        boolean entered = UserService.lookup("mika123", null);
+        boolean entered = UserService.lookup("mika", null);
         assertFalse(entered);
     }
 
